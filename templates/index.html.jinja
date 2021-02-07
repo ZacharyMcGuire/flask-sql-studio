@@ -1,0 +1,30 @@
+{% extends "base.html.jinja" %}
+{% block title %}Flask SQL Studio{% endblock %}
+{% block content %}
+<div class="col-6">
+    <h1>Flask SQL Studio</h1>
+    <p>Insert a tSQL query in the box below and click the button to execute.</p>
+    <p>Please note, only valid <code>SELECT</code> statements are supported.</p>
+</div>
+<div class="w-100"></div>
+<div class="col-6">
+    <form method="POST" action="/" class="query-box">
+        {{ form.csrf_token }}
+        <div class="input-group">
+            {{ form.sql(class_="form-control", rows="5") }}
+        </div>
+        <br>
+        <div class="d-grid gap-2 md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="submit">Execute</button>
+        </div>
+    </form>
+    {% if table %}
+    <hr>
+    <h3>Results</h3>
+    <br>
+    <div class="table-responsive">
+        {{ table|safe }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

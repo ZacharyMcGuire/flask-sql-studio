@@ -22,8 +22,9 @@ def index():
         query = form.sql.data
         df = pd.read_sql(query, engine)
         return render_template(
-            'index.html',
+            'index.html.jinja',
             form=form,
-            table=df.to_html(classes='data', header='true', index=False)
+            table=df.to_html(classes='table table-striped table-bordered',
+                             header='true', index=False)
         )
-    return render_template('index.html', form=form)
+    return render_template('index.html.jinja', form=form)
