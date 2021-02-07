@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    container_name: app-web
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: development
+      SECRET_KEY: e8d10c0f-9452-493c-b2c2-cb286eb9f554
+      DB_PASSWORD: 4b8da716-9434-45c4-9be3-4d5fe8083ab4
+    depends_on: 
+      - db
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    container_name: app-db
+    environment: 
+      SA_PASSWORD: "4b8da716-9434-45c4-9be3-4d5fe8083ab4"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
