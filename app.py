@@ -25,6 +25,7 @@ def index():
             'index.html.jinja',
             form=form,
             table=df.to_html(classes='table table-striped table-bordered',
-                             header='true', index=False, justify="left")
+                             header='true', index=False, justify="left",
+                             show_dimensions=True)
         )
     return render_template('index.html.jinja', form=form)
