@@ -1,9 +1,9 @@
 import os
 
 from flask import Flask
+from flask.helpers import flash
 from flask.templating import render_template
 import pandas as pd
-from werkzeug.utils import redirect
 
 from forms import QueryForm
 from db import engine
@@ -20,12 +20,16 @@ def index():
     form = QueryForm()
     if form.validate_on_submit():
         query = form.sql.data
-        df = pd.read_sql(query, engine)
-        return render_template(
+        try:
+            df = pd.read_sql(query, engine)
+        except Exception as e:
+            flash('{}'.format(e), 'alert-danger')
+        else:
+            return render_template(
                 'index.html',
-            form=form,
-            table=df.to_html(classes='table table-striped table-bordered',
-                             header='true', index=False, justify="left",
-                             show_dimensions=True)
-        )
+                form=form,
+                table=df.to_html(classes='table table-striped table-bordered',
+                                 header='true', index=False, justify="left",
+                                 show_dimensions=True)
+            )
     return render_template('index.html', form=form)
