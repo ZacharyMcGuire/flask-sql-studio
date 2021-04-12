@@ -34,14 +34,14 @@
         </div>
     </form>
 </div>
+{% if table %}
 <div class="col-12">
-    {% if table %}
     <hr>
     <h3>Results</h3>
     <br>
     <div class="table-responsive">
         {{ table|safe }}
     </div>
-    {% endif %}
 </div>
+{% endif %}
 {% endblock %}
