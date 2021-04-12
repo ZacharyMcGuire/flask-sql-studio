@@ -6,6 +6,9 @@ This project will provide a Flask web server which can query a provided database
 
 Project is setup to use docker to provide a web service and a database service.
 
+## Interface
+![alt text](read_me_demo_image.png "Logo Title Text 1")
+
 ## Requirements
 * Docker.
 * Docker Compose.
