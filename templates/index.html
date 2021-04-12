@@ -37,7 +37,12 @@
 {% if table %}
 <div class="col-12">
     <hr>
-    <h3>Results</h3>
+    <h3 class="d-inline-block">Results</h3>
+    <!-- <button class="btn btn-sm btn-outline-secondary d-inline pl-1.5"> -->
+    <a href="/download" class="badge badge-light">
+        <i class="bi bi-download d-inline"></i>
+    </a>
+    <!-- </button> -->
     <br>
     <div class="table-responsive">
         {{ table|safe }}
